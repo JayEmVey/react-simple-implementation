@@ -14,3 +14,10 @@ Browse to root folder of the project, using `npm` command as below:
 
 > npm install
 
+## Run
+
+Using `npm` command:
+
+> npm run dev
+
+Try http://localhost:8080 on your web browser
