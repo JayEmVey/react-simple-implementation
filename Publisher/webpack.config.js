@@ -1,5 +1,5 @@
 var path = require('path');
-
+var HtmlwebpackPlugin = require('html-webpack-plugin');
 var config = {
     //entry: path.resolve(__dirname, 'app/main.js'),
     //When webpack-dev-server is running it will watch your files for changes.
@@ -7,21 +7,26 @@ var config = {
     entry: [
       'webpack/hot/dev-server',
       'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'app/main.jsx')
+      path.resolve(__dirname, 'app/main.js')
     ],
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
     },
+	plugins: [
+	    new HtmlwebpackPlugin({
+	      title: 'React simple implementation'
+	    })
+	],    
 	module: {
 		loaders: [
 		  {
-			test: /\.jsx?$/,
+			test: /\.(js|jsx)?$/,
 			exclude: /(node_modules|bower_components)/,
-			loader: 'babel',
-			query: {
-				presets: ['react']
-			}
+			//loader: 'babel',
+			// Use the property "loaders" instead of "loader" and 
+      		// add "react-hot" in front of your existing "jsx" loader
+      		loaders: ['react-hot', 'babel']
 		  },
 		  //Loading CSS requires the css-loader and the style-loader.
 		  //They have two different jobs.
